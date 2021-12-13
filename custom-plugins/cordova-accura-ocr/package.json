@@ -1,0 +1,18 @@
+{
+  "name": "cordova-accura-ocr",
+  "version": "0.1.0",
+  "description": "A Cordova plugin for serving cordova-accura-ocr",
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "MIT"
+}
