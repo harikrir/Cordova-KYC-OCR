@@ -1,13 +1,13 @@
-﻿# Accura Cordova Plugin
+﻿# Accura Cordova OCR Plugin
 
-cordova-accura-kyc-pl
+cordova-accura-ocr
 
 # Product Installation
 Note: It is assumed that the developer already has a cordova application.
 ## Add android plugin
-$ `cordova plugin add <absolute-path-to-(cordova-accura-kyc-pl)-folder>`
+$ `cordova plugin add <absolute-path-to-(cordova-accura-ocr)-folder>`
 ### Example
-`cordova plugin add I:\accura-cordova\custom-plugins\cordova-accura-kyc-pl`
+`cordova plugin add I:\accura-cordova\custom-plugins\cordova-accura-ocr`
 
 ## Add dependencies
 `$ cordova plugin add cordova-plugin-file`
@@ -64,60 +64,6 @@ $ `cordova plugin add <absolute-path-to-(cordova-accura-kyc-pl)-folder>`
 |ACCURA_ERROR_CODE_WRONG_SIDE|string|Scanning wrong side of document||
 |ACCURA_ERROR_CODE_UPSIDE_DOWN_SIDE|string|Document is upside down. Place it properly||
 ###
-### Liveness Configurations:  JSON Object
-
-Contact AccuraScan at contact@accurascan.com for Liveness SDK or API
-
-|Option|Type|Default|Description|
-| :- | :- | :- | :- |
-|feedbackTextSize|integer|18||
-|feedBackframeMessage|string|Frame Your Face||
-|feedBackAwayMessage|string|Move Phone Away||
-|feedBackOpenEyesMessage|string|Keep Your Eyes Open||
-|feedBackCloserMessage|string|Move Phone Closer||
-|feedBackCenterMessage|string|Move Phone Center||
-|feedBackMultipleFaceMessage|string|Multiple Face Detected||
-|feedBackHeadStraightMessage|string|Keep Your Head Straight||
-|feedBackBlurFaceMessage|string|Blur Detected Over Face||
-|feedBackGlareFaceMessage|string|Glare Detected||
-|setBlurPercentage|integer|80|0 for clean face and 100 for Blurry face or set it -1 to remove blur filter|
-|setGlarePercentage_0|integer|-1|Set min percentage for glare or set it -1 to remove glare filter|
-|setGlarePercentage_1|integer|-1|Set max percentage for glare or set it -1 to remove glare filter|
-|liveness_url|URL string|Your liveness url|Required|
-|livenessBackground|color string|#FFC4C4C5||
-|livenessCloseIcon|color string|#FF000000||
-|livenessfeedbackBg|color string|#00000000||
-|livenessfeedbackText|color string|#FF000000||
-|feedBackLowLightMessage|string|Low light detected||
-
-###
-### Face Match Configurations:  JSON Object
-
-|Option|Type|Default|Description|
-| :- | :- | :- | :- |
-|feedbackTextSize|integer|18||
-|feedBackframeMessage|string|Frame Your Face||
-|feedBackAwayMessage|string|Move Phone Away||
-|feedBackOpenEyesMessage|string|Keep Your Eyes Open||
-|feedBackCloserMessage|string|Move Phone Closer||
-|feedBackCenterMessage|string|Move Phone Center||
-|feedBackMultipleFaceMessage|string|Multiple Face Detected||
-|feedBackHeadStraightMessage|string|Keep Your Head Straight||
-|feedBackBlurFaceMessage|string|Blur Detected Over Face||
-|feedBackGlareFaceMessage|string|Glare Detected||
-|feedBackProcessingMessage|string|"Processing..."||
-|isShowLogo|boolean|true|For display watermark logo images|
-|setBlurPercentage|integer|80|0 for clean face and 100 for Blurry face or set it -1 to remove blur filter|
-|setGlarePercentage_0|integer|-1|Set min percentage for glare or set it -1 to remove glare filter|
-|setGlarePercentage_1|integer|-1|Set max percentage for glare or set it -1 to remove glare filter|
-|backGroundColor|color string|#FFC4C4C5||
-|closeIconColor|color string|#FF000000||
-|feedbackBackGroundColor|color string|#00000000||
-|feedbackTextColor|color string|#FF000000||
-
-
-
-
 
 ### CountryModels: 
 - type: JSON Array
@@ -279,54 +225,6 @@ Contact AccuraScan at contact@accurascan.com for Liveness SDK or API
 
 
 
-- ### startLiveness(accuraConfigrations?, livenessConfigs, successCallback, errorCallback)
-  - livenessConfigs: JSONObject?
-  - Success: JSON Response {
-
- 	 with_face: Boolean,
-
- 	 status: Boolean,
-
- 	 detect: URI?,
-
- 	 image_uri: URI?,
-
- 	 video_uri: URI?,
-
- 	 fm_score: Float? (when with_face = true),
-
- 	 score: Float,
-
-}
-
-  - Error: String<Any Error Message>
-
-
-
-- ### startFaceMatch(accuraConfigrations?, faceMatchConfigs, successCallback, errorCallback)
-  - faceMatchConfigs:  JSON Object?
-  - Success: JSON Response {
-
- 	 with_face: Boolean,
-
- 	 status: Boolean,
-
- 	 detect: URI? (when with_face = true),
-
- 	 img_1: URI? (when with_face = false),
-
- 	 img_2: URI? (when with_face = false),
-
- 	 score: Float
-
-}
-
-  - Error: String<Any Error Message>
-
-
-
-
-
 
 
 # Usage
@@ -349,9 +247,6 @@ function onDeviceReady() {
 
 }
 ```
-
-
-
 
 
 # Usage Example 
@@ -597,107 +492,8 @@ navigate into cordova/www directory
 
 </div>
 ```
-### Add Face Match Dialog
-```
- 	 <div class="modal fade" id="fm-modal" tabindex="-1" role="dialog" aria-labelledby="fm-title" aria-hidden="true">
 
-     <div class="modal-dialog" role="document">
-
-         <div class="modal-content">
-
-             <div class="modal-header">
-
-                 <h5 class="modal-title" id="fm-title">Accura Facematch</h5>
-
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-                     <span aria-hidden="true">&times;</span>
-
-                 </button>
-
-             </div>
-
-             <div class="modal-body">
-
-                 <div class="d-flex justify-content-between">
-
-                     <div class="d-flex flex-column p-2 justify-content-between">
-
-                         <img id="fm-1" src="img/fm.png" class="img-fluid" style="border-radius: 15px">
-
-                         <button onclick="startFaceMatch(false, true, false)" class="mt-2 btn btn-danger btn-sm">Choose Face1</button>
-
-                     </div>
-
-                     <div class="d-flex flex-column p-2 justify-content-between">
-
-                         <img id="fm-2" src="img/fm.png" class="img-fluid" style="border-radius: 15px">
-
-                         <button onclick="startFaceMatch(false, false, true)" class="mt-2 btn btn-danger btn-sm">Choose Face2</button>
-
-                     </div>
-
-                 </div>
-
-                 <h5 class="m-0" id="fm-standalone-score"></h5>
-
-             </div>
-
-             <div class="modal-footer">
-
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-             </div>
-
-         </div>
-
-     </div>
-
-</div>
-```
-
-
-
-
-
-
-### Add Liveness Dialog
-```
-<div class="modal fade" id="lv-modal" tabindex="-1" role="dialog" aria-labelledby="fm-title" aria-hidden="true">
-
-     <div class="modal-dialog" role="document">
-
-         <div class="modal-content">
-
-             <div class="modal-header">
-
-                 <h5 class="modal-title">Accura Liveness</h5>
-
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-                     <span aria-hidden="true">&times;</span>
-
-                 </button>
-
-             </div>
-
-             <div class="modal-body">
-
-             </div>
-
-             <div class="modal-footer">
-
-                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-             </div>
-
-         </div>
-
-     </div>
-
-</div>
-```
-###Add Country Selection Dialog
+### Add Country Selection Dialog
 
 --------------------------------
 ```
@@ -1305,338 +1101,6 @@ function startBarcode() {
 }
 ```
 
-### Initialize Liveness
-```js
-function startLiveness(withFace = false) {
-
-     var accuraConfs = {with_face: withFace, face_uri: facematchURI};
-
-     if (!withFace) {delete accuraConfs.face_uri;}
-
-     var config = {
-
-         feedbackTextSize: 18,
-
-         feedBackframeMessage: 'Frame Your Face',
-
-         feedBackAwayMessage: 'Move Phone Away',
-
-         feedBackOpenEyesMessage: 'Keep Your Eyes Open',
-
-         feedBackCloserMessage: 'Move Phone Closer',
-
-         feedBackCenterMessage: 'Move Phone Center',
-
-         feedBackMultipleFaceMessage: 'Multiple Face Detected',
-
-         feedBackHeadStraightMessage: 'Keep Your Head Straight',
-
-         feedBackBlurFaceMessage: 'Blur Detected Over Face',
-
-         feedBackGlareFaceMessage: 'Glare Detected',
-
-         // <!--// 0 for clean face and 100 for Blurry face or set it -1 to remove blur filter-->
-
-         setBlurPercentage: 80,
-
-         // <!--// Set min percentage for glare or set it -1 to remove glare filter-->
-
-         setGlarePercentage_0: -1,
-
-         // <!--// Set max percentage for glare or set it -1 to remove glare filter-->
-
-         setGlarePercentage_1: -1,
-
-         liveness_url: '<your liveness url>',
-
-         contentType: 'form_data',
-
-         feedBackLowLightMessage: 'Low light detected',
-
-     };
-
-     $('#ls-score,#fm-score').text("0.00 %");
-
-     accura.startLiveness(accuraConfs, config, function (result) {
-
-         console.log(result);
-
-         if (result.hasOwnProperty('status')) {
-
-             if (result.status) {
-
-                 if (result.with_face) {
-
-                     $('#score-div').fadeIn('fast', function () {
-
-                         $('#score-div').css('display', 'flex');
-
-                     });
-
-                     $('#ls-score').text(Number(result.score).toFixed(2) + ' %');
-
-                     if (result.hasOwnProperty('detect')) {
-
-                         $('#detect-face').fadeIn();
-
-                         getImage('detect-face', result.detect);
-
-                         $('#face-div').addClass('justify-content-between');
-
-                     }
-
-                     if (result.hasOwnProperty('fm_score')) {
-
-                         $('#fm-score').text(Number(result.fm_score).toFixed(2) + ' %');
-
-                     }
-
-                     return;
-
-                 }
-
-                 var html = '<h4>Liveness Results</h4>';
-
-                 if (result.hasOwnProperty('image_uri')) {
-
-                     window.resolveLocalFileSystemURL(result.image_uri, function (fileEntry) {
-
-                         fileEntry.file(function (file) {
-
-                             var reader = new FileReader();
-
-                             reader.onloadend = function () {
-
-                                 $('#live_img_div').empty().append(
-
-                                     '<h3>Liveness Image: </h3><img src="' + this.result + '" class="img-fluid">'
-
-                                 )
-
-                                 $('#live_image').attr("src", this.result);
-
-                             };
-
-                             reader.onerror = function () {
-
-                                 $('#live_img_div').remove();
-
-                             }
-
-                             reader.readAsDataURL(file);
-
-                         }, function () {
-
-                             $('#live_img_div').remove();
-
-                         });
-
-                     }, function () {
-
-                         $('#live_img_div').remove();
-
-                     });
-
-                     html += '<div id="live_img_div"><h3>Liveness Image: </h3><img id="live_image" src="' + loadingImg + '"></div>'
-
-                 }
-
-                 if (result.hasOwnProperty('video_uri')) {
-
-                     video_uri = result.video_uri;
-
-                     html += '<div id="live_video" class="w-100">' + '<h3>Live Video: </h3>' +
-
-                         '<button onclick="openVideoForPlay()" class="btn btn-rose">Play Live Video</button>' + '</div>'
-
-                 } else {
-
-                     video_uri = undefined;
-
-                 }
-
-                 html += '<h5>Liveness Score: ' + Number(result.score).toFixed(2) + ' %</h5>';
-
-                 $('#lv-modal .modal-body').empty().append(
-
-                     html
-
-                 );
-
-                 $('#lv-modal').modal();
-
-             }
-
-         }
-
-         console.log(result);
-
-     }, function (error) {
-
-         alert(error);
-
-     });
-
-}
-
-var video_uri;
-
-function openVideoForPlay() {
-
-     if (video_uri === undefined) {
-
-         alert("Video not found");
-
-         return
-
-     }
-
-     var options = {
-
-         errorCallback: function (errMsg) {
-
-             alert(errMsg);
-
-         },
-
-         shouldAutoClose: true,  // true(default)/false
-
-         controls: true // true(default)/false. Used to hide controls on fullscreen
-
-     };
-
-     window.plugins.streamingMedia.playVideo(video_uri, options);
-
-}
-
-```
-
-
-
-
-
-### Initialize face match 
-```js 
-
-var facematchURI;
-
-function startFaceMatch(withFace = false, face1 = false, face2 = false) {
-
-     var accuraConfs = {with_face: withFace, face_uri: facematchURI};
-
-     if (!withFace) {delete accuraConfs.face_uri;}
-
-     if (face1) {face2 = false;}
-
-     if (face2) {face1 = false;}
-
-     accuraConfs.face1 = face1;
-
-     accuraConfs.face2 = face2;
-
-     var config = {
-
-         feedbackTextSize: 18,
-
-         feedBackframeMessage: 'Frame Your Face',
-
-         feedBackAwayMessage: 'Move Phone Away',
-
-         feedBackOpenEyesMessage: 'Keep Your Eyes Open',
-
-         feedBackCloserMessage: 'Move Phone Closer',
-
-         feedBackCenterMessage: 'Move Phone Center',
-
-         feedBackMultipleFaceMessage: 'Multiple Face Detected',
-
-         feedBackHeadStraightMessage: 'Keep Your Head Straight',
-
-         feedBackBlurFaceMessage: 'Blur Detected Over Face',
-
-         feedBackGlareFaceMessage: 'Glare Detected',
-
-         // <!--// 0 for clean face and 100 for Blurry face or set it -1 to remove blur filter-->
-
-         setBlurPercentage: 80,
-
-         // <!--// Set min percentage for glare or set it -1 to remove glare filter-->
-
-         setGlarePercentage_0: -1,
-
-         setGlarePercentage_1: -1,
-
-     };
-
-     $('#ls-score,#fm-score').text("0.00 %");
-
-     accura.startFaceMatch(accuraConfs, config, function (result) {
-
-         console.log(result);
-
-         if (result.hasOwnProperty('status')) {
-
-             if (result.status) {
-
-                 if (result.with_face) {
-
-                     $('#fm-score').text(Number(result.score).toFixed(2) + ' %');
-
-                     $('#face-div').addClass('justify-content-between');
-
-                     $('#detect-face').fadeIn();
-
-                     getImage('detect-face', result.detect);
-
-                     $('#score-div').fadeIn('fast', function () {
-
-                         $('#score-div').css('display', 'flex');
-
-                     });
-
-                     return;
-
-                 }
-
-                 if (result.hasOwnProperty('score')) {
-
-                     $('#fm-standalone-score').text('Face Match: ' + Number(result.score).toFixed(2) + ' %');
-
-                 } else {
-
-                     $('#fm-standalone-score').text('0.0 %');
-
-                 }
-
-                 $('#fm-2, #fm-1').attr("src", loadingImg);
-
-                 getImage('fm-1', result.img_1);
-
-                 getImage('fm-2', result.img_2);
-
-             } else {
-
-                 if (result.hasOwnProperty('img_1')) {
-
-                     $('#fm-1').attr("src", loadingImg);
-
-                     getImage('fm-1', result.img_1);
-
-                 }
-
-             }
-
-         }
-
-     }, function (error) {
-
-         alert(error);
-
-     });
-
-}
-```
-
 ### Initialize MRZ
 ```js
 function startMRZ() {
@@ -1674,42 +1138,6 @@ function generateResult(result) {
              "   <img id='face' src='" + loadingImg + "' class='img-fluid' style='max-height: 120px'>" +
 
              "   <img id='detect-face' src='" + loadingImg + "' class='img-fluid' style='display: none;max-height: 120px'>" +
-
-             "</div>" +
-
-             "<div class='d-flex justify-content-center'>" +
-
-             "   <button onclick='startLiveness(true)' id='check-ls' style='display: none' class='btn-rose btn btn-sm'>" +
-
-             "       <div class='d-flex justify-content-center'>" +
-
-             "           <img style='height: 22px' class='mr-1' src='./img/ic_liveness.png'>" +
-
-             "           <h5 class='m-0'>LIVENESS</h5>" +
-
-             "       </div>" +
-
-             "   </button>" +
-
-             "   <button onclick='startFaceMatch(true)' id='check-ls' style='display: none' class='btn-rose btn btn-sm'>" +
-
-             "       <div class='d-flex justify-content-center'>" +
-
-             "           <img style='margin-top:2px;height: 22px' class='mr-1' src='./img/ic_biometric.png'>" +
-
-             "           <h5 class='m-0'>FACE MATCH</h5>" +
-
-             "       </div>" +
-
-             "   </button>" +
-
-             "</div>" +
-
-             "<div id='score-div' style='display: none' class='justify-content-center justify-content-between'>" +
-
-             "   <h5 id='ls-score'>0.00 %</h5>" +
-
-             "   <h5 id='fm-score'>0.00 %</h5>" +
 
              "</div>";
 
@@ -2007,7 +1435,7 @@ Run
 
 1. ### Plugin Structure
 
-Plugin path = I:\accura-cordova\custom-plugins\cordova-accura-kyc-pl
+Plugin path = I:\accura-cordova\custom-plugins\cordova-accura-ocr
 
 
 
@@ -2028,8 +1456,7 @@ TO MODIFY rename it to your desire package name and run in CMD (in the root of  
   
 These are the paths for licences:
 
-- \accura-cordova\custom-plugins\cordova-accura-kyc-pl\src\android\accuraface.license
-- \accura-cordova\custom-plugins\cordova-accura-kyc-pl\src\android\key.license
+- \accura-cordova\custom-plugins\cordova-accura-ocr\src\android\key.license
 
  	 Replace your licensees in these locations.
 
@@ -2040,39 +1467,31 @@ These are the paths for licences:
 Structure:
 
 1. ### Accura Error Messages
-File: /cordova-accura-kyc-pl/src/android/configs/accura_error_titles_configs.xml
+File: /cordova-accura-ocr/src/android/configs/accura_error_titles_configs.xml
 
 You can change default settings here.
 1. ### Accura Scan Messages
-File: /cordova-accura-kyc-pl/src/android/configs/accura_scan_titles_configs.xml
+File: /cordova-accura-ocr/src/android/configs/accura_scan_titles_configs.xml
 
 You can change default settings here.
 1. ### Accura Common Strings
-File: /cordova-accura-kyc-pl/src/android/configs/accura_strings.xml
-
-You can change default settings here.
-1. ### Face Match 
-File: /cordova-accura-kyc-pl/src/android/configs/face_match_config.xml
-
-You can change default settings here.
-1. ### Liveness 
-File: /cordova-accura-kyc-pl/src/android/liveness_config.xml
+File: /cordova-accura-ocr/src/android/configs/accura_strings.xml
 
 You can change default settings here.
 1. ### Recog Engine Initial Settings
-File: /cordova-accura-kyc-pl/src/android/recog_engine_config.xml
+File: /cordova-accura-ocr/src/android/recog_engine_config.xml
 
 1. ## Accura AAR framework 
  	 Accura framework file is located at:
 
-\accura-cordova\custom-plugins\cordova-accura-kyc-pl\src\android\accura_kyc.aar
+\accura-cordova\custom-plugins\cordova-accura-ocr\src\android\accura_kyc.aar
 
 NOTE: the filename should be the same.
 
 For updating your new AAR file replace the above file.
 
 # Modify Activities
- 	 Folder: \cordova-accura-kyc-pl\src\android\accura-OCR
+ 	 Folder: \cordova-accura-ocr\src\android\accura-OCR
 
 1. FaceMatchActivity.java
 2. OcrActivity.java
@@ -2081,7 +1500,7 @@ NOTE: do not replace the file. Only edit the code.
 
 All the activities are modifiable. And any android developer can modify these activities.
 # Modify Layouts
- 	 Folder: \cordova-accura-kyc-pl\src\android\accura-OCR\layout
+ 	 Folder: \cordova-accura-ocr\src\android\accura-OCR\layout
 
 1. custom_frame_layout.xml
 2. ocr_activity.xml
@@ -2093,8 +1512,8 @@ All the layouts are modifiable. And any android developer can modify these activ
 # Commit Modifications
  		 After all the modifications or any modification open CMD at root(i.e \accura-cordova\) and run the following commands one by one
 
-1. `$ cordova plugin remove cordova-accura-kyc-pl`
-2. `$ cordova plugin add I:\accura-cordova\custom-plugins\cordova-accura-kyc-pl`
+1. `$ cordova plugin remove cordova-accura-ocr`
+2. `$ cordova plugin add I:\accura-cordova\custom-plugins\cordova-accura-ocr`
 
 
 
