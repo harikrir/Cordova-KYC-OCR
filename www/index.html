@@ -14,6 +14,7 @@
 </head>
 
 <body style="background: white;overflow: hidden;touch-action: none">
+    <!-- Top header section with orientation button. -->
     <div class="p-3 d-flex bg-danger justify-content-center justify-content-between">
         <h4 class="m-0 text-white font-weight-bold">Accura</h4>
         <button class="btn btn-light btn-round btn-secondary btn-sm position-absolute" style="
@@ -68,6 +69,7 @@
                 </div>
             </div>
         </div>
+        <!-- View of MRZ scanning -->
         <div id="mrz-div" class="form-group p-2 m-3 border" style="display: none">
             <h4>MRZ</h4>
             <div class="form-group col-md-3">
@@ -108,6 +110,7 @@
                 data-target="#fm-modal">Face Match</button>
         </div>
     </div>
+    <!-- View of result display popup. -->
     <div class="modal fade" id="result-modal" tabindex="-1" role="dialog" aria-labelledby="result-modal-title"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -127,7 +130,7 @@
             </div>
         </div>
     </div>
-
+    <!-- View for check faceMatch & liveness. -->
     <div class="modal fade" id="fm-modal" tabindex="-1" role="dialog" aria-labelledby="fm-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -159,7 +162,7 @@
             </div>
         </div>
     </div>
-
+    <!-- View of model country selection. -->
     <div class="modal fade" id="country-modal" tabindex="-1" role="dialog" aria-labelledby="fm-title"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -176,7 +179,7 @@
             </div>
         </div>
     </div>
-
+    <!-- View of model card selection. -->
     <div class="modal fade" id="card-modal" tabindex="-1" role="dialog" aria-labelledby="fm-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

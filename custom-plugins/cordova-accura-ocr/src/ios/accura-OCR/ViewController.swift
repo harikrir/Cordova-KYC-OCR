@@ -3,6 +3,7 @@ import UIKit
 import AVFoundation
 import AccuraOCR
 
+//ViewController of scanning documents.
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     @IBOutlet weak var _viewLayer: UIView!
