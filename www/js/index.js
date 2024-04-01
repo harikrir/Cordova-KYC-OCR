@@ -1,6 +1,7 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 //This method will call automatically when device is ready.
 document.addEventListener("backbutton", function () {
+    
     if ($('#card-modal').hasClass('show')) {
         $('#card-modal').modal('hide');
         return;
